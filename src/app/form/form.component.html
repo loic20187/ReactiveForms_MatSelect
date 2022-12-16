@@ -1,0 +1,53 @@
+<ng-container>
+
+    <form [formGroup]="poeForm" (ngSubmit)="onSubmit()">
+
+        <h1>Ajouter une POE</h1>
+
+        <label for="title">Veuillez saisir le titre de la POE:</label>
+        <input id="title" type="text" placeholder="TitrePOE" formControlName="title">
+
+
+        <div id="begindate">
+            <mat-form-field appearance="fill">
+                <mat-label>BeginDate</mat-label>
+                <input matInput [matDatepicker]="dp" formControlName="begindate">
+                <mat-hint>Format : JJ-MM-YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div id="enddate">
+            <mat-form-field appearance="fill">
+                <mat-label>EndDate</mat-label>
+                <input matInput [matDatepicker]="dp1" formControlName="enddate">
+                <mat-hint>Format : JJ-MM-YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div id="type">
+            <mat-form-field appearance="fill">
+                <mat-label>Select a poe</mat-label>
+                <mat-select formControlName="type" placeholder="Choice POE" (change)="onSelect()">
+                    <mat-option *ngFor="let enum of options" [value]="getOptionLabel(enum)">
+                        {{ getOptionLabel(enum) }}
+                      </mat-option>
+                  
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+        
+
+        <button [disabled]="!poeForm.valid">Ajouter</button>
+
+        
+
+    </form>
+
+</ng-container>
+
+
